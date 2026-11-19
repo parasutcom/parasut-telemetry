@@ -12,9 +12,11 @@ yüklemez bile. Gem'i önce kurup sonra env ile açabilirsin.
 `Gemfile`:
 
 ```ruby
-source 'https://<token>@gem.fury.io/parasut/'
-gem 'parasut-telemetry', '0.1.0'
+gem 'parasut-telemetry', github: 'parasutcom/parasut-telemetry', branch: 'master'
 ```
+
+Repo public olduğu için kurulumda token gerekmez. Kilitlenen sürüm `Gemfile.lock`'taki
+revision'dır; güncellemek için `bundle update parasut-telemetry`.
 
 `config/initializers/opentelemetry.rb`:
 
@@ -76,4 +78,4 @@ bundle install
 bundle exec rake test
 ```
 
-Yayınlamak için: `VERSION`'ı artır, `gem build parasut-telemetry.gemspec`, ardından gemfury'ye push et.
+Servisler `master`'ı GitHub'dan çeker; `master`'a giren her değişiklik, servislerin bir sonraki `bundle update parasut-telemetry`'sinde gelir. Davranış değiştiren her değişiklikte `VERSION`'ı artır.
